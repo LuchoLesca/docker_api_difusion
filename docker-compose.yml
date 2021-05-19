@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web-app:
+    build: .
+    ports:
+      - '5000:5000'
+    depends_on:
+      - "db-redis"
+    environment: 
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+  db-redis:
+    image: redis:alpine

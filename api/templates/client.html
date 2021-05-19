@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "./partials/head.html" %}
+<body>
+    {% include "./partials/header.html" %}
+
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="row">
+                        <h1 class="text-center mb-5">Publish</h1>
+                    </div>
+                    <div class="row">
+                        <form action='/sub-unsub' method="POST">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Select subscribe/unsubscribe channel:</label>
+                                    <div class="list-group" role="group">
+                                        {% for channel in channels %}
+                                            <input class="btn-check" type="checkbox" name="channels" id="{{ channel['name'] }}" value="{{ channel['name'] }}">
+                                            <label class="btn btn-outline-primary mb-1" for="{{ channel['name'] }}">{{ channel['name'] }}</label>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button name="btnUnsub" type="submit" class="btn btn-danger col-12 mb-1">Unsubscribe</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button name="btnSub" type="submit" class="btn btn-primary col-12 mb-1">Subscribe</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex flex-column">
+                                    <label>Mesagges:</label>
+                                    <div class="h-100 mb-1 border border-secondary rounded" name="messages" id="messages"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </main>
+    {% include "./partials/footer.html" %}
+    <!-- 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        $(
+            function(){
+                setInterval(fetchData, 2000)
+            }
+        )
+
+        function fetchData(){    
+            $.ajax({
+                type: "GET",
+                url: "/getmessages",
+                dataType: "json",
+                success: function(messages) {
+
+                    var chatbox = $("#messages");
+
+                    $.each(messages, function(idx, msg){
+                        // console.log(msg);
+                        chatbox.append("["+msg.channel+"]: " + msg.message);
+                    })
+                },
+                error: function() {
+                    console.log("No se ha podido obtener la información");
+                }
+            });
+        }
+    </script> -->
+</body>
+</html>

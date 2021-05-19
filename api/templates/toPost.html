@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "./partials/head.html" %}
+<body>
+    {% include "./partials/header.html" %}
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="row">
+                        <h1 class="text-center mb-5">Publish</h1>
+                    </div>
+                    <div class="row">
+                        <form action="/publish" method="POST">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Select Channels to send:</label>
+                                    <div class="list-group" role="group">
+                                        {% for channel in channels %}
+                                            <input class="btn-check" type="checkbox" name="channels" id="{{ channel['name'] }}" value="{{ channel['name'] }}">
+                                            <label class="btn btn-outline-primary mb-1" for="{{ channel['name'] }}">{{ channel['name'] }}</label>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-6 d-flex flex-column justify-content-between">
+                                    <label>Write message:</label>
+                                    <div class="form-group h-75">
+                                        <textarea required name="message" class="form-control h-100 border border-secondary rounded" id="message"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary col-12 mt-2 mb-1">Publish</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </main>
+    {% include "./partials/footer.html" %}
+</body>
+</html>
