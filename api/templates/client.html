@@ -31,9 +31,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6 d-flex flex-column">
+                                <div class="col-6 d-flex flex-column" style="max-height: 320px;">
                                     <label>Mesagges:</label>
-                                    <div class="h-100 mb-1 border border-secondary rounded" name="messages" id="messages"></div>
+                                    <div class="h-100 mb-1 border border-secondary rounded overflow-auto" name="messages" id="messages"></div>
                                 </div>
                             </div>
                         </form>
@@ -43,35 +43,8 @@
         </div>        
     </main>
     {% include "./partials/footer.html" %}
-    <!-- 
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-
-        $(
-            function(){
-                setInterval(fetchData, 2000)
-            }
-        )
-
-        function fetchData(){    
-            $.ajax({
-                type: "GET",
-                url: "/getmessages",
-                dataType: "json",
-                success: function(messages) {
-
-                    var chatbox = $("#messages");
-
-                    $.each(messages, function(idx, msg){
-                        // console.log(msg);
-                        chatbox.append("["+msg.channel+"]: " + msg.message);
-                    })
-                },
-                error: function() {
-                    console.log("No se ha podido obtener la información");
-                }
-            });
-        }
-    </script> -->
+    <script src="{{ url_for('static', filename='js/client.js') }}"></script>
 </body>
 </html>
