@@ -3,18 +3,17 @@ from data import channels
 
 
 # DB configurations
-HOST = "localhost"
-# HOST = "db-redis"
+HOST = "db-redis"
 PORT = 6379
 
 
 def connect_db(database=0):
     '''Create conection to DB'''
     conexion = redis.StrictRedis(host=HOST, port=PORT, db=database, charset="utf-8", decode_responses=True)
-    # if(conexion.ping()):
-    #     print("Conectado a servidor de redis")
-    # else:
-    #     print("error")
+    if(conexion.ping()):
+        print("Conectado a servidor de redis")
+    else:
+        print("error")
     return conexion
 
 # DB Acceses

@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from db import client, getChannels, updateNumberOfSubscribers, publishInChannels, subscribeToChannels, unsubscribeToChannels
+from db import client, DBInit, getChannels, updateNumberOfSubscribers, publishInChannels, subscribeToChannels, unsubscribeToChannels
 import time
 
 
 app = Flask(__name__, template_folder='templates')
-# DBInit()
 listener = client
+DBInit()
 
 @app.route('/')
 def index():
@@ -63,7 +63,6 @@ def getmessages():
             if message:
                 if message.get('type') == "message":
                     messages_list.append({"channel":message.get("channel"), "message":message.get("data")})
-                    # print("Canal:", message.get("channel"), " .Mensaje:", message.get("data"))
             else:
                 break
             time.sleep(0.01)
@@ -72,7 +71,6 @@ def getmessages():
 
 
 if __name__ == "__main__":
-    app.debug=True
     app.run(host="localhost", port="5000")
 
 
